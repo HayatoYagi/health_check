@@ -1,4 +1,4 @@
-package com.example.health_check
+package io.github.hayatoyagi.health_check
 
 import io.flutter.embedding.android.FlutterActivity
 

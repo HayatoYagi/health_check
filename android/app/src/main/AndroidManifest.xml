@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.health_check">
+    package="io.github.hayatoyagi.health_check">
    <application
         android:label="health_check"
         android:name="${applicationName}"

@@ -53,3 +53,4 @@ app.*.map.json
 /.gradle/configuration-cache/gc.properties
 /.gradle/vcs-1/gc.properties
 /.gradle/6.8/fileChanges/last-build.bin
+/coverage/lcov.info
