@@ -1,6 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -50,14 +61,37 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  static final googleLogin = GoogleSignIn(scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ]);
+
   void _incrementCounter() {
-    setState(() {
+    setState(() async {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+
+      // TODO: delete me (firebase test)
+      GoogleSignInAccount? signInAccount = await googleLogin.signIn();
+      if (signInAccount == null) return;
+      GoogleSignInAuthentication auth = await signInAccount.authentication;
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        idToken: auth.idToken,
+        accessToken: auth.accessToken,
+      );
+      User? user =
+          (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+      if (user != null) {
+        FirebaseFirestore.instance
+            .collection("data")
+            .doc("7L4xP62KczOz9KvplHcWMN5pUkH2")
+            .get()
+            .then((value) => print(value.get("firstname")));
+      }
     });
   }
 
