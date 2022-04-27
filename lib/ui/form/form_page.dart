@@ -47,7 +47,14 @@ class _InputPage extends StatelessWidget {
             },
             child: const Text("規約はこちら"),
           ),
-          // todo: 同意ボタン（チェックボックス）
+          SwitchListTile(
+            title: const Text("上記個人情報の提供について同意し回答します"),
+            value: context
+                .select((InputViewModel viewModel) => viewModel.rulesAgreed),
+            onChanged: (value) {
+              context.read<InputViewModel>().rulesAgreed = value;
+            },
+          ),
           ElevatedButton(
             onPressed: () {
               context.read<InputViewModel>().submit();
@@ -81,6 +88,8 @@ class BodyTemperatureInput extends StatelessWidget {
               },
               maxValue: 40,
               minValue: 35,
+              initValue:
+                  context.read<InputViewModel>().bodyTemperatureIntegerPart,
               listHeight: 100,
               listWidth: 50,
             ),
@@ -92,6 +101,8 @@ class BodyTemperatureInput extends StatelessWidget {
               },
               maxValue: 9,
               minValue: 0,
+              initValue:
+                  context.read<InputViewModel>().bodyTemperatureFractionalPart,
               listHeight: 100,
               listWidth: 50,
             ),
