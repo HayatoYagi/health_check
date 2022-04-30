@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_check/ui/edit_profile/edit_profile_page.dart';
 import 'package:health_check/ui/form/form_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final _pages = [
     const FormPage(),
-    const FormPage(),
+    const EditProfilePage(),
     const FormPage(),
   ];
 

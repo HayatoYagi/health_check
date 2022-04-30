@@ -7,7 +7,6 @@ class LaunchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 96, 123, 184),
       body: Center(

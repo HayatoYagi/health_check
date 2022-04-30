@@ -58,8 +58,8 @@ class InputViewModel extends ChangeNotifier {
       TemperatureData(
         userData.firstname,
         userData.lastname,
-        userData.schoolId,
-        userData.studentId,
+        userData.schoolid,
+        userData.studentid,
         _bodyTemperatureIntegerPart + _bodyTemperatureFractionalPart / 10,
         symptom,
         DateTime.now(),

@@ -19,27 +19,27 @@ class Firestore {
     if (!snapshot.exists) {
       var currentUser = FirebaseAuth.instance.currentUser!;
       return setUserData(UserData(
-        currentUser.displayName ?? "",
-        "",
-        "",
-        currentUser.email ?? "",
-        0,
-        0,
-        1,
-        36.5,
-        _uid,
+        firstname: currentUser.displayName ?? "",
+        lastname: "",
+        gender: "",
+        mail: currentUser.email ?? "",
+        schoolid: 0,
+        studentid: 0,
+        grade: 1,
+        normalbodytemp: 36.5,
+        uid: _uid,
       ));
     }
     var data = (snapshot).data();
     if (data == null) {
       return null;
     } else {
-      return UserData.fromMap(data);
+      return UserData.fromJson(data);
     }
   }
 
   static UserData setUserData(UserData data) {
-    FirebaseFirestore.instance.collection("users").doc(_uid).set(data.toMap());
+    FirebaseFirestore.instance.collection("users").doc(_uid).set(data.toJson());
     return data;
   }
 }

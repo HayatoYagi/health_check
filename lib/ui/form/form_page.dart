@@ -21,16 +21,19 @@ class _InputPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("入力フォーム"),
+      ),
       body: Column(
         children: [
-          const Text(
-            "入力フォーム",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const Divider(),
+          // const Text(
+          //   "入力フォーム",
+          //   style: TextStyle(
+          //     fontSize: 30,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
+          // const Divider(),
           const BodyTemperatureInput(),
           const SymptomInput(),
           ElevatedButton(
