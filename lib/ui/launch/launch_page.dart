@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_check/firebase/fire_auth.dart';
-import 'package:health_check/ui/form/form_page.dart';
+import 'package:health_check/ui/home/home_page.dart';
 
 class LaunchPage extends StatelessWidget {
   const LaunchPage({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class LaunchPage extends StatelessWidget {
                 await FireAuth.signIn();
                 // TODO: move to HomeView
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const FormPage()));
+                    MaterialPageRoute(builder: (context) => const HomePage()));
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
