@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:health_check/ui/edit_profile/edit_profile_page.dart';
 import 'package:health_check/ui/form/form_page.dart';
 
+import '../settings/settings_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   final _pages = [
     const FormPage(),
     const EditProfilePage(),
-    const FormPage(),
+    const SettingsPage(),
   ];
 
   @override
