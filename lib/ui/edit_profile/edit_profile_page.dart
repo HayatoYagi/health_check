@@ -20,9 +20,6 @@ class _EditProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if ((context
-    //         .select((EditProfileViewModel viewModel) => viewModel.userData)) ==
-    //     null) return const Center(child: CircularProgressIndicator());
     return Scaffold(
       appBar: AppBar(
         title: const Text("プロフィール設定"),

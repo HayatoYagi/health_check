@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health_check/ui/edit_profile/edit_profile_page.dart';
+import 'package:health_check/ui/launch/launch_page.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -147,58 +149,62 @@ class _SettingsPage extends State<SettingsPage> {
       ),
       body: _settingsLoaded
           ? SettingsList(
-              sections: [
-                SettingsSection(
-                  title: const Text("通知設定"),
-                  tiles: [
-                    SettingsTile.switchTile(
-                      initialValue: _enableNotification,
-                      onToggle: _setEnableNotification,
-                      title: const Text("通知オン"),
-                    ),
-                    SettingsTile(
-                      title: const Text("通知時刻"),
-                      trailing: Text(
-                          '${_notificationTime.hour.toString().padLeft(2, '0')}:${_notificationTime.minute.toString().padLeft(2, '0')}'),
-                      onPressed: (BuildContext context) async {
-                        TimeOfDay? value = await showTimePicker(
-                          context: context,
-                          initialTime: _notificationTime,
-                        );
-                        if (value != null) {
-                          _setNotificationTime(value);
-                        }
+        sections: [
+          SettingsSection(
+            title: const Text("通知設定"),
+            tiles: [
+              SettingsTile.switchTile(
+                initialValue: _enableNotification,
+                onToggle: _setEnableNotification,
+                title: const Text("通知オン"),
+              ),
+              SettingsTile(
+                title: const Text("通知時刻"),
+                trailing: Text(
+                    '${_notificationTime.hour.toString().padLeft(2, '0')}:${_notificationTime.minute.toString().padLeft(2, '0')}'),
+                onPressed: (BuildContext context) async {
+                  TimeOfDay? value = await showTimePicker(
+                    context: context,
+                    initialTime: _notificationTime,
+                  );
+                  if (value != null) {
+                    _setNotificationTime(value);
+                  }
+                },
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: const Text("アカウント設定"),
+            tiles: [
+              SettingsTile.navigation(
+                title: const Text("登録情報変更"),
+                onPressed: (BuildContext context) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const EditProfilePage()),
+                  );
+                },
+              ),
+              SettingsTile.navigation(
+                leading: const Icon(Icons.logout),
+                title: const Text("ログアウト"),
+                onPressed: (BuildContext context) {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LaunchPage()));
                       },
-                    ),
-                  ],
-                ),
-                SettingsSection(
-                  title: const Text("アカウント設定"),
-                  tiles: [
-                    SettingsTile.navigation(
-                      title: const Text("登録情報変更"),
-                      onPressed: (BuildContext context) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const EditProfilePage()),
-                        );
-                      },
-                    ),
-                    SettingsTile.navigation(
-                      leading: const Icon(Icons.logout),
-                      title: const Text("ログアウト"),
-                      onPressed: (BuildContext context) {
-                        // todo
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            )
+              ),
+            ],
+          ),
+        ],
+      )
           : const Center(
-              child: CircularProgressIndicator(),
-            ),
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }
