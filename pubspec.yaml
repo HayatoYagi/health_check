@@ -45,6 +45,9 @@ dependencies:
   settings_ui: ^2.0.2
   shared_preferences: ^2.0.13
   intl: ^0.17.0
+  flutter_local_notifications: ^9.5.0
+  timezone: ^0.8.0
+  flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
   flutter_test:
