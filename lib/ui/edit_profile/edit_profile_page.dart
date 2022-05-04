@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:health_check/ui/edit_profile/edit_profile_view_model.dart';
+import 'package:health_check/ui/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({Key? key, this.fromLaunchPage = false})
+      : super(key: key);
+
+  final bool fromLaunchPage; // true: 新規登録時
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => EditProfileViewModel()..loadUserData(),
-      child: const _EditProfileWidget(),
+      child: _EditProfileWidget(
+        fromLaunchPage: fromLaunchPage,
+      ),
     );
   }
 }
 
 class _EditProfileWidget extends StatelessWidget {
-  const _EditProfileWidget({Key? key}) : super(key: key);
+  const _EditProfileWidget({Key? key, this.fromLaunchPage = false})
+      : super(key: key);
+
+  final bool fromLaunchPage;
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +185,17 @@ class _EditProfileWidget extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           context.read<EditProfileViewModel>().saveUserData();
+                          if (fromLaunchPage) {
+                            Navigator.of(context)
+                                .popUntil((route) => route.isFirst);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const HomePage()));
+                          } else {
+                            Navigator.pop(context);
+                          }
                         },
                         child: const Text("保存"),
                       ),

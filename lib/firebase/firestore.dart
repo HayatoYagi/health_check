@@ -5,13 +5,13 @@ import 'package:health_check/model/temperature_data.dart';
 import '../model/user_data.dart';
 
 class Firestore {
-  static String get _uid {
+  static String get uid {
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
   static Future<TemperatureData?> getForm() async {
     var snapshot =
-        await FirebaseFirestore.instance.collection("data").doc(_uid).get();
+        await FirebaseFirestore.instance.collection("data").doc(uid).get();
     if (!snapshot.exists) {
       return null;
     }
@@ -24,25 +24,14 @@ class Firestore {
   }
 
   static void postForm(TemperatureData data) {
-    FirebaseFirestore.instance.collection("data").doc(_uid).set(data.toJson());
+    FirebaseFirestore.instance.collection("data").doc(uid).set(data.toJson());
   }
 
   static Future<UserData?> getUserData() async {
     var snapshot =
-        await FirebaseFirestore.instance.collection("users").doc(_uid).get();
+        await FirebaseFirestore.instance.collection("users").doc(uid).get();
     if (!snapshot.exists) {
-      var currentUser = FirebaseAuth.instance.currentUser!;
-      return setUserData(UserData(
-        firstname: currentUser.displayName ?? "",
-        lastname: "",
-        gender: "",
-        mail: currentUser.email ?? "",
-        schoolid: 0,
-        studentid: 0,
-        grade: 1,
-        normalbodytemp: 36.5,
-        uid: _uid,
-      ));
+      return null;
     }
     var data = snapshot.data();
     if (data == null) {
@@ -53,7 +42,7 @@ class Firestore {
   }
 
   static UserData setUserData(UserData data) {
-    FirebaseFirestore.instance.collection("users").doc(_uid).set(data.toJson());
+    FirebaseFirestore.instance.collection("users").doc(uid).set(data.toJson());
     return data;
   }
 }

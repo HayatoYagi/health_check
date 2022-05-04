@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_check/firebase/fire_auth.dart';
+import 'package:health_check/firebase/firestore.dart';
+import 'package:health_check/ui/edit_profile/edit_profile_page.dart';
 import 'package:health_check/ui/home/home_page.dart';
 
 class LaunchPage extends StatelessWidget {
@@ -28,11 +30,34 @@ class LaunchPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                // TODO: add loading indicator
+                showGeneralDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    transitionDuration: const Duration(milliseconds: 300),
+                    barrierColor: Colors.black.withOpacity(0.5),
+                    pageBuilder: (BuildContext context, Animation animation,
+                        Animation secondaryAnimation) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    });
                 await FireAuth.signIn();
-                // TODO: move to HomeView
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
+
+                if (await Firestore.getUserData() == null) {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EditProfilePage(
+                                fromLaunchPage: true,
+                              )));
+                } else {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomePage()));
+                }
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
