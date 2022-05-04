@@ -9,8 +9,22 @@ class Firestore {
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
+  static Future<TemperatureData?> getForm() async {
+    var snapshot =
+        await FirebaseFirestore.instance.collection("data").doc(_uid).get();
+    if (!snapshot.exists) {
+      return null;
+    }
+    var data = snapshot.data();
+    if (data == null) {
+      return null;
+    } else {
+      return TemperatureData.fromJson(data);
+    }
+  }
+
   static void postForm(TemperatureData data) {
-    FirebaseFirestore.instance.collection("data").doc(_uid).set(data.toMap());
+    FirebaseFirestore.instance.collection("data").doc(_uid).set(data.toJson());
   }
 
   static Future<UserData?> getUserData() async {
@@ -30,7 +44,7 @@ class Firestore {
         uid: _uid,
       ));
     }
-    var data = (snapshot).data();
+    var data = snapshot.data();
     if (data == null) {
       return null;
     } else {

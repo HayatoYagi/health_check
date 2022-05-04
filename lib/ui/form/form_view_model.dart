@@ -4,11 +4,28 @@ import 'package:health_check/model/temperature_data.dart';
 import '../../firebase/firestore.dart';
 import '../../model/user_data.dart';
 
-class InputViewModel extends ChangeNotifier {
+class FormViewModel extends ChangeNotifier {
+  bool _submitted = false;
+  TemperatureData? _postedData;
+
   int _bodyTemperatureIntegerPart = 36;
   int _bodyTemperatureFractionalPart = 5;
   bool _symptom = false;
   bool _rulesAgreed = false;
+
+  bool get submitted => _submitted;
+
+  set submitted(bool value) {
+    _submitted = value;
+    notifyListeners();
+  }
+
+  TemperatureData? get postedData => _postedData;
+
+  set postedData(TemperatureData? value) {
+    _postedData = value;
+    notifyListeners();
+  }
 
   String get bodyTemperature =>
       _bodyTemperatureIntegerPart.toString() +
@@ -43,9 +60,8 @@ class InputViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> submit() async {
+  void submit() async {
     if (!rulesAgreed) {
-      // todo
       return;
     }
 
@@ -54,17 +70,31 @@ class InputViewModel extends ChangeNotifier {
       // todo
       return;
     }
-    Firestore.postForm(
-      TemperatureData(
-        userData.firstname,
-        userData.lastname,
-        userData.schoolid,
-        userData.studentid,
-        _bodyTemperatureIntegerPart + _bodyTemperatureFractionalPart / 10,
-        symptom,
-        DateTime.now(),
-        userData.mail,
-      ),
+
+    TemperatureData data = TemperatureData(
+      firstname: userData.firstname,
+      lastname: userData.lastname,
+      schoolid: userData.schoolid,
+      studentid: userData.studentid,
+      bodytemp:
+          _bodyTemperatureIntegerPart + _bodyTemperatureFractionalPart / 10,
+      symptom: symptom,
+      posttime: DateTime.now(),
+      mail: userData.mail,
     );
+    Firestore.postForm(data);
+    postedData = data;
+    submitted = true;
+  }
+
+  void checkSubmitted() async {
+    postedData = await Firestore.getForm();
+    DateTime? prevPostTime = postedData?.posttime;
+    if (prevPostTime == null) return;
+    if (prevPostTime.year == DateTime.now().year &&
+        prevPostTime.month == DateTime.now().month &&
+        prevPostTime.day == DateTime.now().day) {
+      submitted = true;
+    }
   }
 }

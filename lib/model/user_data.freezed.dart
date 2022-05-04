@@ -21,25 +21,16 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserData {
   String get firstname => throw _privateConstructorUsedError;
-
   String get lastname => throw _privateConstructorUsedError;
-
   String get gender => throw _privateConstructorUsedError;
-
   String get mail => throw _privateConstructorUsedError;
-
   int get schoolid => throw _privateConstructorUsedError;
-
   int get studentid => throw _privateConstructorUsedError;
-
   int get grade => throw _privateConstructorUsedError;
-
   double get normalbodytemp => throw _privateConstructorUsedError;
-
   String get uid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $UserDataCopyWith<UserData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -49,7 +40,6 @@ mixin _$UserData {
 abstract class $UserDataCopyWith<$Res> {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
       _$UserDataCopyWithImpl<$Res>;
-
   $Res call(
       {String firstname,
       String lastname,
@@ -67,7 +57,6 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
   _$UserDataCopyWithImpl(this._value, this._then);
 
   final UserData _value;
-
   // ignore: unused_field
   final $Res Function(UserData) _then;
 
@@ -128,7 +117,6 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
 abstract class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
   factory _$UserDataCopyWith(_UserData value, $Res Function(_UserData) then) =
       __$UserDataCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {String firstname,
@@ -319,31 +307,22 @@ abstract class _UserData implements UserData {
 
   @override
   String get firstname => throw _privateConstructorUsedError;
-
   @override
   String get lastname => throw _privateConstructorUsedError;
-
   @override
   String get gender => throw _privateConstructorUsedError;
-
   @override
   String get mail => throw _privateConstructorUsedError;
-
   @override
   int get schoolid => throw _privateConstructorUsedError;
-
   @override
   int get studentid => throw _privateConstructorUsedError;
-
   @override
   int get grade => throw _privateConstructorUsedError;
-
   @override
   double get normalbodytemp => throw _privateConstructorUsedError;
-
   @override
   String get uid => throw _privateConstructorUsedError;
-
   @override
   @JsonKey(ignore: true)
   _$UserDataCopyWith<_UserData> get copyWith =>

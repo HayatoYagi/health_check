@@ -1,45 +1,22 @@
-class TemperatureData {
-  String firstname;
-  String lastname;
-  int schoolId;
-  int studentId;
-  double bodyTemp;
-  bool symptom;
-  DateTime postTime;
-  String mail;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  TemperatureData(
-    this.firstname,
-    this.lastname,
-    this.schoolId,
-    this.studentId,
-    this.bodyTemp,
-    this.symptom,
-    this.postTime,
-    this.mail,
-  );
+part 'temperature_data.freezed.dart';
 
-  Map<String, dynamic> toMap() {
-    return {
-      TemperatureField.firstname: firstname,
-      TemperatureField.lastname: lastname,
-      TemperatureField.schoolId: schoolId,
-      TemperatureField.studentId: studentId,
-      TemperatureField.bodyTemperature: bodyTemp,
-      TemperatureField.symptom: symptom,
-      TemperatureField.postTime: postTime,
-      TemperatureField.mail: mail,
-    };
-  }
-}
+part 'temperature_data.g.dart';
 
-class TemperatureField {
-  static const String firstname = "firstname";
-  static const String lastname = "lastname";
-  static const String schoolId = "schoolid";
-  static const String studentId = "studentid";
-  static const String bodyTemperature = "bodytemp";
-  static const String symptom = "symptom";
-  static const String postTime = "posttime";
-  static const String mail = "mail";
+@freezed
+class TemperatureData with _$TemperatureData {
+  const factory TemperatureData({
+    required String firstname,
+    required String lastname,
+    required int schoolid,
+    required int studentid,
+    required double bodytemp,
+    required bool symptom,
+    required DateTime posttime,
+    required String mail,
+  }) = _TemperatureData;
+
+  factory TemperatureData.fromJson(Map<String, dynamic> json) =>
+      _$TemperatureDataFromJson(json);
 }
