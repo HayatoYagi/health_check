@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_check/ui/edit_profile/edit_profile_page.dart';
 import 'package:health_check/ui/form/form_page.dart';
+import 'package:health_check/ui/profile_info/profile_info_page.dart';
 
 import '../settings/settings_page.dart';
 
@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final _pages = [
     const FormPage(),
-    const EditProfilePage(),
+    const ProfileInfoPage(),
     const SettingsPage(),
   ];
 

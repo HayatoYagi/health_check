@@ -103,7 +103,10 @@ class _EditProfileWidget extends StatelessWidget {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(8),
+                      ],
                       initialValue: context
                           .read<EditProfileViewModel>()
                           .userData
@@ -121,7 +124,10 @@ class _EditProfileWidget extends StatelessWidget {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(4),
+                      ],
                       initialValue: context
                           .read<EditProfileViewModel>()
                           .userData
@@ -160,7 +166,7 @@ class _EditProfileWidget extends StatelessWidget {
                     DropdownButtonFormField(
                       value: context.select((EditProfileViewModel viewModel) =>
                           viewModel.userData?.gender),
-                      // todo: これが["男性", "女性", "その他"]に含まれていないとエラー
+                      // todo: valueが["男性", "女性", "その他"]に含まれていないとエラー
                       items: ["男性", "女性", "その他"]
                           .map((String value) => DropdownMenuItem(
                                 value: value,
