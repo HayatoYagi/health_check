@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:health_check/model/temperature_data.dart';
 
@@ -29,8 +30,8 @@ class FormViewModel extends ChangeNotifier {
 
   String get bodyTemperature =>
       _bodyTemperatureIntegerPart.toString() +
-      "." +
-      _bodyTemperatureFractionalPart.toString();
+          "." +
+          _bodyTemperatureFractionalPart.toString();
 
   int get bodyTemperatureIntegerPart => _bodyTemperatureIntegerPart;
 
@@ -40,6 +41,7 @@ class FormViewModel extends ChangeNotifier {
   }
 
   int get bodyTemperatureFractionalPart => _bodyTemperatureFractionalPart;
+
   set bodyTemperatureFractionalPart(int value) {
     assert(0 <= value && value <= 9);
     _bodyTemperatureFractionalPart = value;
@@ -79,7 +81,7 @@ class FormViewModel extends ChangeNotifier {
       bodytemp:
           _bodyTemperatureIntegerPart + _bodyTemperatureFractionalPart / 10,
       symptom: symptom,
-      posttime: DateTime.now(),
+      posttime: Timestamp.fromDate(DateTime.now()),
       mail: userData.mail,
     );
     Firestore.postForm(data);
@@ -89,7 +91,7 @@ class FormViewModel extends ChangeNotifier {
 
   void checkSubmitted() async {
     postedData = await Firestore.getForm();
-    DateTime? prevPostTime = postedData?.posttime;
+    DateTime? prevPostTime = postedData?.posttime.toDate();
     if (prevPostTime == null) return;
     if (prevPostTime.year == DateTime.now().year &&
         prevPostTime.month == DateTime.now().month &&

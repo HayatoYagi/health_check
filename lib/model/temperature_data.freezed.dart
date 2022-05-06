@@ -32,7 +32,8 @@ mixin _$TemperatureData {
 
   bool get symptom => throw _privateConstructorUsedError;
 
-  DateTime get posttime => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _posttimeFromJson, toJson: _posttimeToJson)
+  Timestamp get posttime => throw _privateConstructorUsedError;
 
   String get mail => throw _privateConstructorUsedError;
 
@@ -48,7 +49,6 @@ abstract class $TemperatureDataCopyWith<$Res> {
   factory $TemperatureDataCopyWith(
           TemperatureData value, $Res Function(TemperatureData) then) =
       _$TemperatureDataCopyWithImpl<$Res>;
-
   $Res call(
       {String firstname,
       String lastname,
@@ -56,7 +56,8 @@ abstract class $TemperatureDataCopyWith<$Res> {
       int studentid,
       double bodytemp,
       bool symptom,
-      DateTime posttime,
+      @JsonKey(fromJson: _posttimeFromJson, toJson: _posttimeToJson)
+          Timestamp posttime,
       String mail});
 }
 
@@ -66,7 +67,6 @@ class _$TemperatureDataCopyWithImpl<$Res>
   _$TemperatureDataCopyWithImpl(this._value, this._then);
 
   final TemperatureData _value;
-
   // ignore: unused_field
   final $Res Function(TemperatureData) _then;
 
@@ -109,7 +109,7 @@ class _$TemperatureDataCopyWithImpl<$Res>
       posttime: posttime == freezed
           ? _value.posttime
           : posttime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as Timestamp,
       mail: mail == freezed
           ? _value.mail
           : mail // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,6 @@ abstract class _$TemperatureDataCopyWith<$Res>
   factory _$TemperatureDataCopyWith(
           _TemperatureData value, $Res Function(_TemperatureData) then) =
       __$TemperatureDataCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {String firstname,
@@ -133,7 +132,8 @@ abstract class _$TemperatureDataCopyWith<$Res>
       int studentid,
       double bodytemp,
       bool symptom,
-      DateTime posttime,
+      @JsonKey(fromJson: _posttimeFromJson, toJson: _posttimeToJson)
+          Timestamp posttime,
       String mail});
 }
 
@@ -187,7 +187,7 @@ class __$TemperatureDataCopyWithImpl<$Res>
       posttime: posttime == freezed
           ? _value.posttime
           : posttime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as Timestamp,
       mail: mail == freezed
           ? _value.mail
           : mail // ignore: cast_nullable_to_non_nullable
@@ -206,7 +206,8 @@ class _$_TemperatureData implements _TemperatureData {
       required this.studentid,
       required this.bodytemp,
       required this.symptom,
-      required this.posttime,
+      @JsonKey(fromJson: _posttimeFromJson, toJson: _posttimeToJson)
+          required this.posttime,
       required this.mail});
 
   factory _$_TemperatureData.fromJson(Map<String, dynamic> json) =>
@@ -225,7 +226,8 @@ class _$_TemperatureData implements _TemperatureData {
   @override
   final bool symptom;
   @override
-  final DateTime posttime;
+  @JsonKey(fromJson: _posttimeFromJson, toJson: _posttimeToJson)
+  final Timestamp posttime;
   @override
   final String mail;
 
@@ -281,7 +283,8 @@ abstract class _TemperatureData implements TemperatureData {
       required final int studentid,
       required final double bodytemp,
       required final bool symptom,
-      required final DateTime posttime,
+      @JsonKey(fromJson: _posttimeFromJson, toJson: _posttimeToJson)
+          required final Timestamp posttime,
       required final String mail}) = _$_TemperatureData;
 
   factory _TemperatureData.fromJson(Map<String, dynamic> json) =
@@ -289,16 +292,12 @@ abstract class _TemperatureData implements TemperatureData {
 
   @override
   String get firstname => throw _privateConstructorUsedError;
-
   @override
   String get lastname => throw _privateConstructorUsedError;
-
   @override
   int get schoolid => throw _privateConstructorUsedError;
-
   @override
   int get studentid => throw _privateConstructorUsedError;
-
   @override
   double get bodytemp => throw _privateConstructorUsedError;
 
@@ -306,11 +305,11 @@ abstract class _TemperatureData implements TemperatureData {
   bool get symptom => throw _privateConstructorUsedError;
 
   @override
-  DateTime get posttime => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _posttimeFromJson, toJson: _posttimeToJson)
+  Timestamp get posttime => throw _privateConstructorUsedError;
 
   @override
   String get mail => throw _privateConstructorUsedError;
-
   @override
   @JsonKey(ignore: true)
   _$TemperatureDataCopyWith<_TemperatureData> get copyWith =>

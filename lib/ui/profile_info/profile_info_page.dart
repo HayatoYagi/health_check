@@ -59,8 +59,9 @@ class _ProfileInfoPage extends StatelessWidget {
                     _ProfileInfoItem(
                       title: "平熱",
                       content: context.select(
-                          (ProfileInfoViewModel viewModel) =>
-                              viewModel.userData!.normalbodytemp.toString()),
+                          (ProfileInfoViewModel viewModel) => viewModel
+                              .userData!.normalbodytemp
+                              .toStringAsFixed(1)),
                     ),
                     _ProfileInfoItem(
                       title: "性別",

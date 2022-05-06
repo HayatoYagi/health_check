@@ -14,7 +14,7 @@ _$_TemperatureData _$$_TemperatureDataFromJson(Map<String, dynamic> json) =>
       studentid: json['studentid'] as int,
       bodytemp: (json['bodytemp'] as num).toDouble(),
       symptom: json['symptom'] as bool,
-      posttime: DateTime.parse(json['posttime'] as String),
+      posttime: _posttimeFromJson(json['posttime'] as Timestamp),
       mail: json['mail'] as String,
     );
 
@@ -26,6 +26,6 @@ Map<String, dynamic> _$$_TemperatureDataToJson(_$_TemperatureData instance) =>
       'studentid': instance.studentid,
       'bodytemp': instance.bodytemp,
       'symptom': instance.symptom,
-      'posttime': instance.posttime.toIso8601String(),
+      'posttime': _posttimeToJson(instance.posttime),
       'mail': instance.mail,
     };

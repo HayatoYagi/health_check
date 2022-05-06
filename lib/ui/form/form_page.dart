@@ -47,13 +47,13 @@ class _FormPage extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              "体温: ${context.select((FormViewModel viewModel) => viewModel.postedData!.bodytemp)}",
+                              "体温: ${context.select((FormViewModel viewModel) => viewModel.postedData!.bodytemp).toStringAsFixed(1)}",
                             ),
                             Text(
                               "自覚症状: ${context.select((FormViewModel viewModel) => viewModel.postedData!.symptom ? "あり" : "なし")}",
                             ),
                             Text(
-                              "提出時間: ${context.select((FormViewModel viewModel) => DateFormat('yyyy/MM/dd hh:mm').format(viewModel.postedData!.posttime))}",
+                              "提出時間: ${context.select((FormViewModel viewModel) => DateFormat('yyyy/MM/dd hh:mm').format(viewModel.postedData!.posttime.toDate()))}",
                             ),
                           ],
                         ),
