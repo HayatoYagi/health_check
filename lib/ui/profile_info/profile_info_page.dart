@@ -8,7 +8,9 @@ class ProfileInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ProfileInfoViewModel()..loadUserData(),
+      create: (context) => ProfileInfoViewModel()
+        ..loadUserData()
+        ..authenticate(),
       child: _ProfileInfoPage(),
     );
   }
@@ -21,10 +23,21 @@ class _ProfileInfoPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("登録情報"),
       ),
-      body: context.select(
-              (ProfileInfoViewModel viewModel) => viewModel.userData == null)
-          ? const Center(
-              child: CircularProgressIndicator(),
+      body: context.select((ProfileInfoViewModel viewModel) =>
+              viewModel.userData == null || !viewModel.didAuthenticate)
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("パスワードで保護されています"),
+                  TextButton(
+                    onPressed: () {
+                      context.read<ProfileInfoViewModel>().authenticate();
+                    },
+                    child: const Text("表示"),
+                  ),
+                ],
+              ),
             )
           : Scrollbar(
               thickness: 6,
