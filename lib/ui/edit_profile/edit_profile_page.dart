@@ -13,7 +13,9 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => EditProfileViewModel()..loadUserData(),
+      create: (context) => EditProfileViewModel()
+        ..loadUserData()
+        ..authenticate(),
       child: _EditProfileWidget(
         fromLaunchPage: fromLaunchPage,
       ),
@@ -33,10 +35,23 @@ class _EditProfileWidget extends StatelessWidget {
       appBar: AppBar(
         title: const Text("プロフィール設定"),
       ),
-      body: ((context.select(
-                  (EditProfileViewModel viewModel) => viewModel.userData)) ==
-              null)
-          ? const Center(child: CircularProgressIndicator())
+      body: context.select((EditProfileViewModel viewModel) =>
+              viewModel.userData == null ||
+              (!viewModel.didAuthenticate && !fromLaunchPage))
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("パスワードで保護されています"),
+                  TextButton(
+                    onPressed: () {
+                      context.read<EditProfileViewModel>().authenticate();
+                    },
+                    child: const Text("表示"),
+                  ),
+                ],
+              ),
+            )
           : Padding(
               padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
