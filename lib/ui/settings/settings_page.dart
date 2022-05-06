@@ -228,7 +228,11 @@ class _SettingsPage extends State<SettingsPage> {
                     SettingsTile(
                       title: const Text("通知時刻"),
                       trailing: Text(
-                          '${_notificationTime.hour.toString().padLeft(2, '0')}:${_notificationTime.minute.toString().padLeft(2, '0')}'),
+                        '${_notificationTime.hour.toString().padLeft(2, '0')}:${_notificationTime.minute.toString().padLeft(2, '0')}',
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
                       onPressed: (BuildContext context) async {
                         TimeOfDay? value = await showTimePicker(
                           context: context,
