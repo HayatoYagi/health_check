@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health_check/firebase/fire_auth.dart';
 import 'package:health_check/firebase/firestore.dart';
@@ -41,7 +42,13 @@ class LaunchPage extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       );
                     });
-                await FireAuth.signIn();
+                try {
+                  await FireAuth.signIn();
+                } on FirebaseAuthException catch (e) {
+                  print(e);
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  return;
+                }
 
                 if (await Firestore.getUserData() == null) {
                   Navigator.of(context).popUntil((route) => route.isFirst);
