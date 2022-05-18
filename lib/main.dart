@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:health_check/firebase/fire_auth.dart';
+import 'package:health_check/ui/home/home_page.dart';
 import 'package:health_check/ui/launch/launch_page.dart';
 
 import 'firebase/firebase_options.dart';
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const LaunchPage(),
+      home: FireAuth.loggedIn ? const HomePage() : const LaunchPage(),
     );
   }
 }

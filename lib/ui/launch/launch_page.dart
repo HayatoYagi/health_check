@@ -45,7 +45,7 @@ class LaunchPage extends StatelessWidget {
                 try {
                   await FireAuth.signIn();
                 } on FirebaseAuthException catch (e) {
-                  print(e);
+                  debugPrint(e.toString());
                   Navigator.of(context).popUntil((route) => route.isFirst);
                   return;
                 }

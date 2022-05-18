@@ -7,6 +7,12 @@ class FireAuth {
     'https://www.googleapis.com/auth/contacts.readonly',
   ]);
 
+  static User? _user = FirebaseAuth.instance.currentUser;
+
+  static User? get user => _user;
+
+  static bool get loggedIn => _user != null;
+
   static Future<void> signIn() async {
     GoogleSignInAccount? signInAccount = await googleLogin.signIn();
     if (signInAccount == null) return;
@@ -15,7 +21,11 @@ class FireAuth {
       idToken: auth.idToken,
       accessToken: auth.accessToken,
     );
-    User? user =
-        (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+    _user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+  }
+
+  static signOut() {
+    googleLogin.signOut();
+    FirebaseAuth.instance.signOut();
   }
 }

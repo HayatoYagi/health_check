@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:health_check/firebase/fire_auth.dart';
 import 'package:health_check/ui/edit_profile/edit_profile_page.dart';
 import 'package:health_check/ui/launch/launch_page.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -262,7 +262,7 @@ class _SettingsPage extends State<SettingsPage> {
                       leading: const Icon(Icons.logout),
                       title: const Text("ログアウト"),
                       onPressed: (BuildContext context) {
-                        FirebaseAuth.instance.signOut();
+                        FireAuth.signOut();
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

@@ -19,9 +19,20 @@ class ProfileInfoViewModel extends ChangeNotifier {
 
   Future<void> authenticate() async {
     var localAuth = LocalAuthentication();
-    _didAuthenticate = await localAuth.authenticate(
-      localizedReason: '個人情報は保護されています',
-    );
+    final bool canAuthenticate = await localAuth.canCheckBiometrics ||
+        await localAuth.isDeviceSupported();
+    if (canAuthenticate) {
+      try {
+        _didAuthenticate = await localAuth.authenticate(
+          localizedReason: '個人情報は保護されています',
+        );
+      } catch (e) {
+        debugPrint(e.toString());
+        _didAuthenticate = true;
+      }
+    } else {
+      _didAuthenticate = true;
+    }
     notifyListeners();
   }
 }
