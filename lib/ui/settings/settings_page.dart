@@ -148,7 +148,7 @@ class _SettingsPage extends State<SettingsPage> {
 
   void _initNotification() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('icon512');
+        AndroidInitializationSettings('smartcheck_notification_icon_android');
 
     const InitializationSettings initializationSettings =
         InitializationSettings(
@@ -157,7 +157,6 @@ class _SettingsPage extends State<SettingsPage> {
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  // todo: アプリをキルすると通知が来ないっぽい？
   Future<void> _setNotification() async {
     await _flutterLocalNotificationsPlugin.cancelAll();
 
