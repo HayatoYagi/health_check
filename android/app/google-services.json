@@ -1,20 +1,28 @@
 {
   "project_info": {
-    "project_number": "139663324564",
-    "project_id": "health-check-test-269b1",
-    "storage_bucket": "health-check-test-269b1.appspot.com"
+    "project_number": "62891179128",
+    "project_id": "health-check-db5ee",
+    "storage_bucket": "health-check-db5ee.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:139663324564:android:33e626cf6873a832038b81",
+        "mobilesdk_app_id": "1:62891179128:android:fabebfb57b2e044e15018d",
         "android_client_info": {
           "package_name": "io.github.hayatoyagi.health_check"
         }
       },
       "oauth_client": [
         {
-          "client_id": "139663324564-jmf6ohh3ba7borkkaketp445ke710p41.apps.googleusercontent.com",
+          "client_id": "62891179128-4f1toiaqr3cv42mduu3fari11gg4fv9v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.hayatoyagi.health_check",
+            "certificate_hash": "12f15522f688a1ee735edb5c773e1fa33305ac44"
+          }
+        },
+        {
+          "client_id": "62891179128-buiohpchoplu3tvahpc2vk7li4tb0h59.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "io.github.hayatoyagi.health_check",
@@ -22,24 +30,32 @@
           }
         },
         {
-          "client_id": "139663324564-sahtnlp8ja76jcmp9g0guag3cndcms2s.apps.googleusercontent.com",
+          "client_id": "62891179128-v1pqgdr15bae0c793k6dessndjsm7rk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.hayatoyagi.health_check",
+            "certificate_hash": "dfee3ccf5e03d54260bb3f6c195385fe06dfd29f"
+          }
+        },
+        {
+          "client_id": "62891179128-rbgh5r151kfmo71jl6tf4mat82qm2ljk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBdNTbUfhrF1TweASjxXZnyQu_qGTyFHF0"
+          "current_key": "AIzaSyDkeAILDJqHzZlYp7MSpckbtXWy57iG5xY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "139663324564-sahtnlp8ja76jcmp9g0guag3cndcms2s.apps.googleusercontent.com",
+              "client_id": "62891179128-rbgh5r151kfmo71jl6tf4mat82qm2ljk.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "139663324564-bft2babt28c1a7jj50uju0i4shjuptmv.apps.googleusercontent.com",
+              "client_id": "62891179128-ltgf3vo4v9ug6o40lqhc46hiaobg77er.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "pleap.Health-Check"

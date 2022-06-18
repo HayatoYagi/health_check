@@ -9,6 +9,7 @@ import 'firebase/firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: 'health-check-db5ee',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
