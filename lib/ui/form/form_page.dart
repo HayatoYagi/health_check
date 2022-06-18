@@ -53,7 +53,7 @@ class _FormPage extends StatelessWidget {
                               "自覚症状: ${context.select((FormViewModel viewModel) => viewModel.postedData!.symptom ? "あり" : "なし")}",
                             ),
                             Text(
-                              "提出時間: ${context.select((FormViewModel viewModel) => DateFormat('yyyy/MM/dd hh:mm').format(viewModel.postedData!.posttime.toDate()))}",
+                              "提出時間: ${context.select((FormViewModel viewModel) => DateFormat('yyyy/MM/dd HH:mm').format(viewModel.postedData!.posttime.toDate()))}",
                             ),
                           ],
                         ),
