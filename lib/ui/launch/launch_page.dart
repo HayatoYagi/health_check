@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:health_check/firebase/fire_auth.dart';
 import 'package:health_check/firebase/firestore.dart';
 import 'package:health_check/ui/edit_profile/edit_profile_page.dart';
@@ -32,21 +32,25 @@ class LaunchPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 showGeneralDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    transitionDuration: const Duration(milliseconds: 300),
-                    barrierColor: Colors.black.withOpacity(0.5),
-                    pageBuilder: (BuildContext context, Animation animation,
-                        Animation secondaryAnimation) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    });
+                  context: context,
+                  barrierDismissible: false,
+                  transitionDuration: const Duration(milliseconds: 300),
+                  barrierColor: Colors.black.withOpacity(0.5),
+                  pageBuilder: (BuildContext context, Animation animation,
+                      Animation secondaryAnimation) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                );
                 try {
                   await FireAuth.signIn();
-                } on FirebaseAuthException catch (e) {
+                } catch (e) {
                   debugPrint(e.toString());
                   Navigator.of(context).popUntil((route) => route.isFirst);
+                  Fluttertoast.showToast(
+                    msg: "@marianna-u.ac.jpのアカウントを使用してください",
+                  );
                   return;
                 }
 
