@@ -196,7 +196,11 @@ class BodyTemperatureInput extends StatelessWidget {
 class SymptomInput extends StatelessWidget {
   const SymptomInput({Key? key}) : super(key: key);
 
-  final List<String> symptomsDescription = const ["体温37.5未満で自覚症状なし", "自覚症状がある"];
+  final List<String> symptomsDescription = const [
+    "体温37.5未満で自覚症状なし",
+    "体温37.5以上で自覚症状なし",
+    "自覚症状がある"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -214,21 +218,19 @@ class SymptomInput extends StatelessWidget {
           ),
           Center(
             child: DropdownButton<String>(
-              value: symptomsDescription[
-                  context.select((FormViewModel viewModel) => viewModel.symptom)
-                      ? 1
-                      : 0],
-              items: const <String>["体温37.5未満で自覚症状なし", "自覚症状がある"]
+              value: symptomsDescription[context
+                  .select((FormViewModel viewModel) => viewModel.symptomIdx)],
+              items: symptomsDescription
                   .map((String value) => DropdownMenuItem<String>(
                         child: Text(value),
                         value: value,
                       ))
                   .toList(),
               onChanged: (String? value) {
-                context.read<FormViewModel>().symptom =
-                    (symptomsDescription.indexOf(value ?? "") == 1)
-                        ? true
-                        : false;
+                int newIdx = (symptomsDescription.indexOf(value ?? ""));
+                if (newIdx != -1) {
+                  context.read<FormViewModel>().symptom = newIdx;
+                }
               },
             ),
           ),

@@ -11,7 +11,7 @@ class FormViewModel extends ChangeNotifier {
 
   int _bodyTemperatureIntegerPart = 36;
   int _bodyTemperatureFractionalPart = 5;
-  bool _symptom = false;
+  int _symptomIdx = 0;
   bool _rulesAgreed = false;
 
   bool get submitted => _submitted;
@@ -48,10 +48,10 @@ class FormViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool get symptom => _symptom;
+  int get symptomIdx => _symptomIdx;
 
-  set symptom(bool value) {
-    _symptom = value;
+  set symptom(int value) {
+    _symptomIdx = value;
     notifyListeners();
   }
 
@@ -80,7 +80,7 @@ class FormViewModel extends ChangeNotifier {
       studentid: userData.studentid,
       bodytemp:
           _bodyTemperatureIntegerPart + _bodyTemperatureFractionalPart / 10,
-      symptom: symptom,
+      symptom: symptomIdx == 2 ? true : false,
       posttime: Timestamp.fromDate(DateTime.now()),
       mail: userData.mail,
     );
