@@ -100,7 +100,7 @@ class _EditProfileWidget extends StatelessWidget {
                     DropdownButtonFormField(
                       value: context.select((EditProfileViewModel viewModel) =>
                           viewModel.userData?.grade),
-                      items: [1, 2, 3, 4]
+                      items: [1, 2, 3, 4, 5, 6]
                           .map((int value) => DropdownMenuItem(
                                 value: value,
                                 child: Text("第$value学年"),
